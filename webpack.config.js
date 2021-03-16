@@ -8,10 +8,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
-    publicPath: '/'
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js'
   },
+  mode: 'production',
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
@@ -19,7 +19,6 @@ module.exports = {
       "@styles": path.resolve(__dirname, 'src/styles/')
     }
   },
-  mode: 'production',
   module: {
     rules: [
       {
@@ -47,13 +46,13 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/public/index.html',
+      template: './public/index.html',
       filename: 'index.html'
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
   ],
   optimization: {
     minimize: true,
